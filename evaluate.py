@@ -43,23 +43,23 @@ def get_results(args, H):
         print('Outputs will be stored in {}'.format(image_dir))
         for i in range(len(true_annolist)):
             try:
-            true_anno = true_annolist[i]
-            orig_img = imread('%s/%s' % (data_dir, true_anno.imageName))[:,:,:3]
-            img = imresize(orig_img, (H["image_height"], H["image_width"]), interp='cubic')
-            feed = {x_in: img}
-            (np_pred_boxes, np_pred_confidences) = sess.run([pred_boxes, pred_confidences], feed_dict=feed)
-            pred_anno = al.Annotation()
-            pred_anno.imageName = true_anno.imageName
-            new_img, rects = add_rectangles(H, [img], np_pred_confidences, np_pred_boxes,
-                                            use_stitching=True, rnn_len=H['rnn_len'], min_conf=args.min_conf, tau=args.tau, show_suppressed=args.show_suppressed)
-        
-            pred_anno.rects = rects
-            pred_anno.imagePath = os.path.abspath(data_dir)
-            pred_anno = rescale_boxes((H["image_height"], H["image_width"]), pred_anno, orig_img.shape[0], orig_img.shape[1])
-            pred_annolist.append(pred_anno)
+                true_anno = true_annolist[i]
+                orig_img = imread('%s/%s' % (data_dir, true_anno.imageName))[:,:,:3]
+                img = imresize(orig_img, (H["image_height"], H["image_width"]), interp='cubic')
+                feed = {x_in: img}
+                (np_pred_boxes, np_pred_confidences) = sess.run([pred_boxes, pred_confidences], feed_dict=feed)
+                pred_anno = al.Annotation()
+                pred_anno.imageName = true_anno.imageName
+                new_img, rects = add_rectangles(H, [img], np_pred_confidences, np_pred_boxes,
+                                                use_stitching=True, rnn_len=H['rnn_len'], min_conf=args.min_conf, tau=args.tau, show_suppressed=args.show_suppressed)
             
-            imname = '%s/%s' % (image_dir, os.path.basename(true_anno.imageName))
-            misc.imsave(imname, new_img)
+                pred_anno.rects = rects
+                pred_anno.imagePath = os.path.abspath(data_dir)
+                pred_anno = rescale_boxes((H["image_height"], H["image_width"]), pred_anno, orig_img.shape[0], orig_img.shape[1])
+                pred_annolist.append(pred_anno)
+                
+                imname = '%s/%s' % (image_dir, os.path.basename(true_anno.imageName))
+                misc.imsave(imname, new_img)
             except FileNotFoundError:
                 pass
             if i % 25 == 0:
