@@ -76,8 +76,9 @@ def main():
     parser.add_argument('--iou_threshold', default=0.5, type=float)
     parser.add_argument('--tau', default=0.25, type=float)
     parser.add_argument('--min_conf', default=0.2, type=float)
-    parser.add_argument('--show_suppressed', default=True, type=bool)
+    parser.add_argument('--show_suppressed', default=False, type=bool)    
     args = parser.parse_args()
+
     os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu)
     hypes_file = '%s/hypes.json' % os.path.dirname(args.weights)
     with open(hypes_file, 'r') as f:
