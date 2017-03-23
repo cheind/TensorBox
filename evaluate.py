@@ -90,7 +90,7 @@ def main():
     pred_annolist, true_annolist = get_results(args, H)
     pred_annolist.save(pred_boxes)
     true_annolist.save(true_boxes)
-
+"""
     try:
         rpc_cmd = './utils/annolist/doRPC.py --minOverlap %f %s %s' % (args.iou_threshold, true_boxes, pred_boxes)
         print('$ %s' % rpc_cmd)
@@ -104,6 +104,7 @@ def main():
         print('output results at: %s' % plot_output)
     except Exception as e:
         print(e)
+"""
 
 if __name__ == '__main__':
     main()
