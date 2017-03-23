@@ -396,14 +396,14 @@ def build(H, q):
                 misc.imsave(img_path, merged[0])
                 return merged
 
-            pred_log_img = tf.py_func(log_image,
-                                      [test_image, test_pred_confidences, test_pred_boxes, global_step, 'pred'],
-                                      [tf.float32])
-            true_log_img = tf.py_func(log_image,
-                                      [test_image, test_true_confidences, test_true_boxes, global_step, 'true'],
-                                      [tf.float32])
-            tf.summary.image(phase + '/pred_boxes', pred_log_img, max_outputs=10)
-            tf.summary.image(phase + '/true_boxes', true_log_img, max_outputs=10)
+            # pred_log_img = tf.py_func(log_image,
+            #                           [test_image, test_pred_confidences, test_pred_boxes, global_step, 'pred'],
+            #                           [tf.float32])
+            # true_log_img = tf.py_func(log_image,
+            #                           [test_image, test_true_confidences, test_true_boxes, global_step, 'true'],
+            #                           [tf.float32])
+            # tf.summary.image(phase + '/pred_boxes', pred_log_img, max_outputs=10)
+            # tf.summary.image(phase + '/true_boxes', true_log_img, max_outputs=10)
 
     summary_op = tf.summary.merge_all()
 
