@@ -387,11 +387,13 @@ def build(H, q):
 
                 merged = train_utils.add_rectangles(H, np_img, np_confidences, np_boxes,
                                                     use_stitching=True,
-                                                    rnn_len=H['rnn_len'])[0]
+                                                    rnn_len=H['rnn_len'])
+
+                
 
                 num_images = 10
                 img_path = os.path.join(H['save_dir'], '%s_%s.jpg' % ((np_global_step / H['logging']['display_iter']) % num_images, pred_or_true))
-                misc.imsave(img_path, merged)
+                misc.imsave(img_path, merged[0])
                 return merged
 
             pred_log_img = tf.py_func(log_image,
