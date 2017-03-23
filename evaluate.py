@@ -40,8 +40,9 @@ def get_results(args, H):
         data_dir = os.path.dirname(args.test_boxes)
         image_dir = get_image_dir(args)
         os.makedirs(image_dir, exist_ok=True)
-        print(image_dir)
+        print('Outputs will be stored in {}'.format(image_dir))
         for i in range(len(true_annolist)):
+            try:
             true_anno = true_annolist[i]
             orig_img = imread('%s/%s' % (data_dir, true_anno.imageName))[:,:,:3]
             img = imresize(orig_img, (H["image_height"], H["image_width"]), interp='cubic')
@@ -59,6 +60,8 @@ def get_results(args, H):
             
             imname = '%s/%s' % (image_dir, os.path.basename(true_anno.imageName))
             misc.imsave(imname, new_img)
+            except FileNotFoundError:
+                pass
             if i % 25 == 0:
                 print(i)
     return pred_annolist, true_annolist
