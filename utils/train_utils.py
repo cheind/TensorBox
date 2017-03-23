@@ -139,8 +139,8 @@ def add_rectangles(H, orig_image, confidences, boxes, use_stitching=False, rnn_l
         for rect in rect_set:
             if rect.confidence > min_conf:
                 cv2.rectangle(image,
-                    (rect.cx-int(rect.width/2), rect.cy-int(rect.height/2)),
-                    (rect.cx+int(rect.width/2), rect.cy+int(rect.height/2)),
+                    (int(rect.cx)-int(rect.width/2), int(rect.cy)-int(rect.height/2)),
+                    (int(rect.cx)+int(rect.width/2), int(rect.cy)+int(rect.height/2)),
                     color,
                     2)
 
