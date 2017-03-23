@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.8)
+project(stitchwrapper)
+
+set(Python_ADDITIONAL_VERSIONS 3.5)
+find_package(PythonLibs)
+include_directories(".")
+include_directories("./hungarian")
+include_directories(${PYTHON_INCLUDE_DIRS})
+add_library(stitchwrapper SHARED stitch_wrapper.cpp stitch_rects.cpp ./hungarian/hungarian.cpp)
+target_link_libraries(stitchwrapper ${PYTHON_LIBRARIES})
