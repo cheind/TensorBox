@@ -6,13 +6,13 @@ This repository is fork of [TensorBox](https://github.com/TensorBox/TensorBox). 
  - Python 3.5
  - Tensorflow 1.x
 
-Currently status
+Current status
 
-- [x] Port to Python 3.5
-- [x] Port to Tensorflow 1.x
-- [x] Make `stitch_wrapper` compile on Windows.
-- [ ] Improve docs on usage on Windows.
-- [ ] Make sure all algorithm types are working properly.
+ - [x] Port to Python 3.5
+ - [x] Port to Tensorflow 1.x
+ - [x] Compile `stitch_wrapper` compile on Windows (read below)
+ - [ ] Improve docs on usage on Windows.
+ - [ ] Make sure all algorithm types are working properly.
 
 The original ReadMe.md file is shown below.
 ---
