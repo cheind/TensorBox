@@ -39,7 +39,8 @@ def get_results(args, H):
         true_annolist = al.parse(args.test_boxes)
         data_dir = os.path.dirname(args.test_boxes)
         image_dir = get_image_dir(args)
-        subprocess.call('mkdir -p %s' % image_dir, shell=True)
+        os.makedirs(image_dir, exist_ok=True)
+        print(image_dir)
         for i in range(len(true_annolist)):
             true_anno = true_annolist[i]
             orig_img = imread('%s/%s' % (data_dir, true_anno.imageName))[:,:,:3]

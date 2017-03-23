@@ -460,7 +460,7 @@ def train(H, test_images):
         for phase in ['train', 'test']:
             # enqueue once manually to avoid thread start delay
             gen = train_utils.load_data_gen(H, phase, jitter=H['solver']['use_jitter'])
-            d = gen.next()
+            d = next(gen)
             sess.run(enqueue_op[phase], feed_dict=make_feed(d))
             t = threading.Thread(target=thread_loop,
                                  args=(sess, enqueue_op, phase, gen))
@@ -486,7 +486,7 @@ def train(H, test_images):
         # train model for N iterations
         start = time.time()
         max_iter = H['solver'].get('max_iter', 10000000)
-        for i in xrange(max_iter):
+        for i in range(max_iter):
             display_iter = H['logging']['display_iter']
             adjusted_lr = (H['solver']['learning_rate'] *
                            0.5 ** max(0, (i / H['solver']['learning_rate_step']) - 2))
@@ -505,13 +505,13 @@ def train(H, test_images):
                                       summary_op, train_op, smooth_op,
                                      ], feed_dict=lr_feed)
                 writer.add_summary(summary_str, global_step=global_step.eval())
-                print_str = string.join([
+                print_str = ', '.join([
                     'Step: %d',
                     'lr: %f',
                     'Train Loss: %.2f',
                     'Softmax Test Accuracy: %.1f%%',
                     'Time/image (ms): %.1f'
-                ], ', ')
+                ])
                 print(print_str %
                       (i, adjusted_lr, train_loss,
                        test_accuracy * 100, dt * 1000 if i > 0 else 0))
