@@ -1,3 +1,22 @@
+
+## Note by Christoph Heindl
+
+This repository is fork of [TensorBox](https://github.com/TensorBox/TensorBox). It contains changes to make TensorBox functional on 
+ - Windows 10 x64
+ - Python 3.5
+ - Tensorflow 1.x
+
+Currently status
+
+- [x] Port to Python 3.5
+- [x] Port to Tensorflow 1.x
+- [x] Make `stitch_wrapper` compile on Windows.
+- [ ] Improve docs on usage on Windows.
+- [ ] Make sure all algorithm types are working properly.
+
+The original ReadMe.md file is shown below.
+---
+
 <img src=http://russellsstewart.com/s/tensorbox/tensorbox_output.jpg></img>
 
 <img src="https://travis-ci.org/TensorBox/TensorBox.svg?branch=master"></img>
